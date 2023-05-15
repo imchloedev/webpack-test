@@ -2,7 +2,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin"); // 번들이 시
 const HtmlWebpackPlugin = require("html-webpack-plugin"); // HTML 파일을 생성하고 스크립트 태그로 번들링된 모든 파일을 HTML 파일에 삽입해준다.
 const path = require("path");
 const webpack = require("webpack");
-const MiniCssExtractPlugin = require("min-css-extract-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = {
   entry: "./src/index.js", // 모듈의 의존성 그래프를 만드는 것으로, src/index.js 파일이 기본값으로 설정되며, 지정된 파일에 연관된 모듈과 라이브러리를 포함한 번들을 만든다.
@@ -16,16 +16,18 @@ module.exports = {
     rules: [
       {
         test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
     ],
   },
   // module.rules는 사용하려는 로더의 규칙을 정의한다. 로더명은 use속성에 추가하고, test는 해당 로더에 적용하려는 파일 확장자를 정규식형태로 지정한다. css-loader를 적용한다.
+  // MiniCssExtractPlugin - CSS 파일로 분리하기
 
   plugins: [
     new HtmlWebpackPlugin(),
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
+    new MiniCssExtractPlugin(),
   ],
 
   // HMR - 페이지 리로드없이 변경된 부분의 모듈만 업데이트된다.
