@@ -22,6 +22,11 @@ module.exports = {
         test: /\.(woff|woff2|eot|ttf|otf|)$/,
         use: ["file-loader"],
       },
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: ["babel-loader", "eslint-loader"],
+      },
     ],
   }, // module.rules는 사용하려는 로더의 규칙을 정의한다. 로더명은 use속성에 추가하고, test는 해당 로더에 적용하려는 파일 확장자를 정규식형태로 지정한다. css-loader를 적용한다.
 
