@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "bundle": "webpack --watch --config webpack.dev.config.js",
-    "production": "webpack"
+    "production": "webpack",
+    "dev": "webpack-dev-server --open --mode=development"
   },
   "author": "",
   "license": "ISC",
@@ -14,11 +15,13 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.7.3",
     "html-webpack-plugin": "^5.5.1",
+    "mini-css-extract-plugin": "^2.7.5",
     "webpack": "^5.82.1",
     "webpack-cli": "^5.1.1"
   },
   "dependencies": {
     "lodash": "^4.17.21",
+    "style-loader": "^3.3.2",
     "webpack-dev-server": "^4.15.0"
   }
 }
