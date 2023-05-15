@@ -18,13 +18,28 @@ module.exports = {
         test: /\.css$/,
         use: [MiniCssExtractPlugin.loader, "css-loader"],
       },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: ["file-loader"],
+      },
+      {
+        test: /\.(woff|woff2|eot|ttf|otf|)$/,
+        use: ["file-loader"],
+      },
     ],
   },
   // module.rules는 사용하려는 로더의 규칙을 정의한다. 로더명은 use속성에 추가하고, test는 해당 로더에 적용하려는 파일 확장자를 정규식형태로 지정한다. css-loader를 적용한다.
   // MiniCssExtractPlugin - CSS 파일로 분리하기
+  // file-loader - 이미지 파일 관리
 
   plugins: [
-    new HtmlWebpackPlugin(),
+    new HtmlWebpackPlugin({
+      template: "./demo/index.html",
+      meta: {
+        "theme-color": "#4285f4",
+        description: "Webpack 러닝 가이드 실습을 진행합니다.",
+      },
+    }),
     new CleanWebpackPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new MiniCssExtractPlugin(),
